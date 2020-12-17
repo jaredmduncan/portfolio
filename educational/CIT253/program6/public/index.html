@@ -1,0 +1,148 @@
+<!DOCTYPE html><!DOCTYPE html> <html>
+<head><title>Program 6</title> <meta charset="utf-8">
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular-route.js"></script>
+</head>
+
+<body ng-app="mainApp">
+<div class="container">
+
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+  <div class="navbar-header">
+     <a class="navbar-brand" href="#home">Our Website</a>
+  </div>
+  <div>
+     <ul class="nav navbar-nav">
+        <li class="active"><a href="#home">Home</a></li>
+        <li><a href="#add_student">Add a Student</a></li>
+        <li><a href="#edit_student">Edit a Student</a></li>
+    </ul>
+  </div>
+  </div>
+  </nav>
+
+  <div id="main">
+       <p id="time_loaded"><p> <!-- time of initial page load -->
+       <div ng-view> </div> <!-- partial pages substituted here -->
+  </div>
+
+  <div class="panel-footer">
+       <p>Footer items here: &nbsp; &copy; Company | Privacy | Whatever</p>
+  </div>
+
+</div> <!-- end class="container" -->
+</body></html>
+
+<script>
+    document.getElementById("time_loaded").innerHTML = "Page loaded: " + new Date().toLocaleTimeString()
+</script>
+
+<script>
+   var app = angular.module("mainApp", ["ngRoute"]);
+
+   app.config(function($routeProvider) {
+       $routeProvider
+          .when("/", {
+               templateUrl : "partials/all_student.html",
+               controller : "all_student"
+          })
+          .when("/home", {
+               templateUrl : "partials/all_student.html",
+               controller : "all_student"
+          })
+          .when("/all_student", {
+               templateUrl : "partials/all_student.html",
+               controller : "all_student"
+          })
+          .when("/add_student", {
+               templateUrl : "partials/add_student.html",
+               controller : "add_student"
+          })
+          .when("/edit_student", {
+               templateUrl : "partials/edit_student.html",
+               controller : "edit_student"
+          })
+          .otherwise({
+               redirectTo: "partials/all_student.html"
+          });
+    });
+
+     /* a controller for each page */
+    app.controller("all_student", function($scope, $http) {
+        $http.get("/getStudents").then(function(response) {
+          $scope.students = response.data;
+          if (typeof response.data == "string") {
+            $scope.status = response.data;
+          } else {
+            $scope.status = '';
+          }
+        });
+    });
+
+    app.controller("add_student", function($scope, $http) {
+      $scope.addStudent = function() {
+          var info = {
+              sid : $scope.sid,
+              first_name : $scope.firstname,
+              last_name : $scope.lastname,
+              major : $scope.major
+          }
+
+          $http.post('/postStudent', info)
+              .then(function (response) {
+                   $scope.status = response.data;
+
+             $scope.sid = "";
+             $scope.firstname = "";
+             $scope.lastname = "";
+          if (typeof response.data == "string") {
+            $scope.status = response.data;
+          } else {
+            $scope.status = '';
+          }
+          });
+      };
+    });
+
+    app.controller("edit_student", function($scope, $http) {
+
+      $scope.getStudent = function() {
+        $http.get("/getStudent?sid=" + $scope.sid).then(function(response) {
+          $scope.last_name = response.data.last_name;
+          $scope.major = response.data.major;
+          $scope.midterm = response.data.midterm;
+          $scope.final = response.data.final;
+          if (typeof response.data == "string") {
+            $scope.status = response.data;
+          } else {
+            $scope.status = '';
+          }
+        });
+      };
+
+      $scope.editStudent = function () {
+        var student = {
+          sid: $scope.sid,
+          last_name: $scope.last_name,
+          major: $scope.major,
+          midterm: $scope.midterm,
+          final: $scope.final
+        }
+        $http.post("/editStudent",student).then(function(response){
+          console.log("Edited student, got: " + JSON.stringify(response));
+          if (typeof response.data == "string") {
+            $scope.status = response.data;
+          } else {
+            $scope.status = '';
+          }
+        });
+      };
+
+    });
+</script>

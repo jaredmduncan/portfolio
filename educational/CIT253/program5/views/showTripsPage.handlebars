@@ -1,0 +1,18 @@
+<h1>Trip Data</h1>
+<table class="table">
+<thead>
+	<tr>
+		<th scope="col">Date</th>
+		<th scope="col">City</th>
+		<th scope="col">Miles</th>
+		<th scope="col">Gallons</th>
+		<th scope="col">Miles per Gallon</th>
+		<th scope="col">Edit</th>
+	</tr>
+</thead>
+<tbody>
+	{{#each trips}}
+		<tr><td>{{date}}</td><td>{{city}}</td><td>{{miles}}</td><td>{{gallons}}</td><td>{{mpg}}</td><td><a href="/edit?date={{date}}">Edit</a></td></tr>
+	{{/each}}
+</tbody>
+</table>

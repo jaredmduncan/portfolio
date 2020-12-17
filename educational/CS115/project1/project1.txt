@@ -1,0 +1,30 @@
+Python 3.7.3 (v3.7.3:ef4ec6ed12, Mar 25 2019, 22:22:05) [MSC v.1916 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> 5/2
+2.5
+>>> 5//2
+2
+>>> speed = 75
+>>> time = 3.2
+>>> distance = speed * time
+>>> print(distance)
+240.0
+>>> result = 9 % 2
+>>> print(result)
+1
+>>> print("[redacted]\n", "[redacted]\n","[redacted]")
+[redacted]
+ [redacted]
+ [redacted]
+>>> print(format(3465.1482,'7.2f'))
+3465.15
+>>> print()
+
+>>> custNumber = 1111
+>>> custName = "John Doe"
+>>> balance = 312
+>>> print(format("CUSTOMER NUM", "<14s"), format("CUSTOMER NAME", "<15s"), format("BALANCE", ">7s"))
+CUSTOMER NUM   CUSTOMER NAME   BALANCE
+>>> print(format(custNumber, "<14d"), format(custName, "<15s"), format(balance, ">7.2f"))
+1111           John Doe         312.00
+>>> 

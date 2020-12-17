@@ -1,0 +1,40 @@
+<h1>Daily Flights: All times are local.</h1>
+Airport Codes: SDF is Louisville, MIA is Miami, LAS is Las Vegas.<br/>
+<br/>
+<h2>Schedule</h2>
+<table class="table">
+<thead>
+	<tr>
+		<th scope="col">Flight Number</th>
+		<th scope="col">Depart</th>
+		<th scope="col">Arrive</th>
+	</tr>
+</thead>
+<tbody>
+	{{#each flights}}
+		<tr><td>{{flight}}</td><td>{{origin}}</td><td>{{destination}}</td></tr>
+	{{/each}}
+</tbody>
+</table>
+<br/>
+<h2>Reservation Form</h2>
+I would like to reserve a flight with the following options.<br/>
+<br/>
+<form method="POST" action="form">
+	<input type="text" name="fullName" placeholder="Enter full name"> Enter full name<br/>
+	<br/>
+	<input type="text" name="flightNumber" placeholder="Enter flight number"> Enter flight number<br/>
+	<br/>
+	Seating Preference <select name="seatingPreference">
+		<option value="coach">Coach</option>
+		<option value="firstClass">First Class</option>
+		<option value="presidentialClass">Presidential Class</option>
+	</select><br/>
+	<br/>
+	Meal Preference<br/>
+	<input type="radio" name="mealPreference" value="beef"> Beef<br/>
+	<input type="radio" name="mealPreference" value="chicken"> Chicken<br/>
+	<input type="radio" name="mealPreference" value="vegan"> Vegan<br/>
+	<br/>
+	<button type="submit">Submit Form</button>
+</form>

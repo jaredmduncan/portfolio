@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::-->
+
+    <title>[redacted] - cit253 - program 2</title>
+    <style>
+      #html {
+        font-size: 10px;
+      }
+    </style>
+    <script>
+      var data = [
+        {
+          "Destination" : "Chicago",
+          "Miles" : 350,
+          "Gallons" : 10.6
+        },
+        {
+          "Destination" : "St. Louis",
+          "Miles" : 300,
+          "Gallons" : 10.5
+        },
+        {
+          "Destination" : "Indianapolis",
+          "Miles" : 100,
+          "Gallons" : 3.7
+        },
+        {
+          "Destination" : "Nashville",
+          "Miles" : 200,
+          "Gallons" : 6.4
+        },
+        {
+          "Destination" : "Cincinnati",
+          "Miles" : 150,
+          "Gallons" : 3.9
+        }
+      ]
+      function empty() {
+        try {
+          var removeMe = document.getElementById("trip-table");
+          removeMe.parentNode.removeChild(removeMe);
+        }
+        catch (e) {}
+      }
+      function display(id) {
+        var button = document.getElementById(id);
+
+        var table = document.createElement("table");
+        table.className = "table table-hover mt-3 mb-0 border";
+        table.id = "trip-table";
+
+        var thead = document.createElement("thead");
+        table.appendChild(thead);
+
+        var tbody = document.createElement("tbody");
+        table.appendChild(tbody);
+
+        head_column_0 = document.createElement("th");
+        head_column_1 = document.createElement("th");
+        head_column_2 = document.createElement("th");
+        head_column_3 = document.createElement("th");
+
+        head_column_0.innerHTML = "Destination";
+        head_column_1.innerHTML = "Miles";
+        head_column_2.innerHTML = "Gallons";
+        head_column_3.innerHTML = "MPG";
+
+        thead.appendChild(head_column_0);
+        thead.appendChild(head_column_1);
+        thead.appendChild(head_column_2);
+        thead.appendChild(head_column_3);
+
+        for (var i = 0; i < data.length; i++) {
+          var record_i = data[i];
+
+          var row_i = document.createElement("tr");
+
+          var cell_column_0 = document.createElement("td");
+          var cell_column_1 = document.createElement("td");
+          var cell_column_2 = document.createElement("td");
+          var cell_column_3 = document.createElement("td");
+
+          cell_column_0.innerHTML = record_i.Destination;
+          cell_column_1.innerHTML = record_i.Miles.toString();
+          cell_column_2.innerHTML = record_i.Gallons.toString();
+          cell_column_3.innerHTML = (record_i.Miles / record_i.Gallons).toFixed(1).toString();
+
+          row_i.appendChild(cell_column_0);
+          row_i.appendChild(cell_column_1);
+          row_i.appendChild(cell_column_2);
+          row_i.appendChild(cell_column_3);
+
+          tbody.appendChild(row_i);
+        }
+        button.insertAdjacentElement("afterend", table);
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row p-3">
+        <div class="p-3 col-12 rounded shadow">
+          <h1>Trip Data</h1>
+          <hr>
+          <input type="button" id="trip-button" value="Display Data" class="btn btn-primary" onclick="empty();display(this.id)">
+        </div>
+      </div>
+    </div>
+
+
+<!--::::::::::::::::::::::::::::::::::::::::::::::::::-->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

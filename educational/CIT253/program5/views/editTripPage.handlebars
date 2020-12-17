@@ -1,0 +1,56 @@
+<form style="display:inline;" method="post" action="/editForm?date={{trip.date}}">
+	<div class="row mb-3">
+		<div class="col">
+			<h1>Edit Trip</h1>
+		</div>
+	</div>
+	<div class="row mb-3">
+		<div class="col">
+			Trip Date:
+		</div>
+		<div class="col">
+			{{trip.date}}
+		</div>
+	</div>
+	<div class="row mb-3">
+		<div class="col">
+			City:
+		</div>
+		<div class="col">
+			{{trip.city}}
+		</div>
+	</div>
+	<div class="row mb-3">
+		<div class="col">
+			Miles:
+		</div>
+		<div class="col">
+			{{trip.miles}}
+		</div>
+		<div class="col">
+			<button type="button" onclick="javascript:document.getElementById('milesTextField').style.display='block';this.style.display='none';">
+				Edit
+			</button>
+			<input style="display:none;" id="milesTextField" type="text" name="miles">
+		</div>
+	</div>
+	<div class="row mb-3">
+		<div class="col">
+			Gallons:
+		</div>
+		<div class="col">
+			{{trip.gallons}}
+		</div>
+		<div class="col">
+			<button type="button" onclick="javascript:document.getElementById('gallonsTextField').style.display='block';this.style.display='none';"/>
+				Edit
+			</button>
+			<input style="display:none;" id="gallonsTextField" type="text" name="gallons">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<input type="submit">
+		</div>
+	</div>
+</form>

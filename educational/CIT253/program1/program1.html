@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>[redacted] - CIT253 Program 1</title>
+		<script>
+			function calculateTax(income) {
+				var tax;
+				if (income >= 0 && income < 27050) {
+					tax = .15 * income;
+				} else if (income >= 27050 && income < 65550) {
+					tax = 4057.5 + (.275 * (income - 27050));
+				} else if (income >= 65550 && income < 136750) {
+					tax = 14654 + (.305 * (income - 65550));
+				} else if (income >= 136750 && income < 297350) {
+					tax = 36361 + (.355 * (income - 136750));
+				} else if (income >= 297350) {
+					tax = 93374 + (.391 * (income - 297350));
+				} else {
+					tax = 0;
+				}
+				return tax.toFixed(2);
+			}
+			function doTax() {
+				var income = parseFloat(document.taxCalculator.income.value);
+				var tax = calculateTax(income);
+				document.taxCalculator.tax.value = tax;
+				return
+			}
+		</script>
+	</head>
+	<body>
+		<div>
+			<form name="taxCalculator">
+				<p>Tax calculator</p>
+				<p><input type="text" name="income"> Input your income</p>
+				<p><input type="button" value="Calculate Tax" onclick="doTax()"></p>
+				<p><input type="text" name="tax"> Tax to be paid</p>
+			</form>
+		</div>
+	</body>
+</html>

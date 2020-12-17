@@ -1,0 +1,21 @@
+<h2>Current Students</h2>
+<p><input type='text' ng-model='search_value'> Enter Search Text</p>
+<table class="table table-bordered table-striped">
+	<tr>
+		<th>SID</th>
+		<th>Name</th>
+		<th>Major</th>
+		<th>Midterm</th>
+		<th>Final</th>
+		<th>Average</th>
+	</tr>
+	<tr ng-repeat="student in students | filter : search_value">
+		<td>{{student.sid}}</td>
+		<td>{{student.last_name}}</td>
+		<td>{{student.major}}</td>
+		<td>{{student.midterm}}</td>
+		<td>{{student.final}}</td>
+		<td>{{((student.midterm+student.final)/2).toFixed(1)}}</td>
+	</tr>
+</table>
+<span ng-bind="status"></span>

@@ -1,0 +1,16 @@
+<h3>Add a New Student Page</h3>
+<p>Enter the following information.</p>
+
+<p><input type='text' ng-model='sid'> Enter student ID (4 digits)</p>
+<p><input type='text' ng-model='firstname'> Enter first name </p>
+<p><input type='text' ng-model='lastname'> Enter last name </p>
+
+<p>Select Major <select ng-model='major'>
+<option value='BUS'>BUS</option>
+<option value='CIT'>CIT</option>
+<option value='EET'>EET</option>
+<option value='WEB'>WEB</option>
+</select></p>
+<p><button type="button" class="btn btn-primary" ng-click="addStudent()">Add Student</button></p>
+
+<span ng-bind="status"></span>
